@@ -1,3 +1,4 @@
+import os
 #from typing_extensions import Required
 from flask import Flask 
 from flask_restful import Api
@@ -9,7 +10,7 @@ from resources.store import Store,StoreList
 
 app = Flask(__name__)
 app.config['SQLALCHEMY_TRACK_NOTIFICATIONS']=False
-app.config['SQLALCHEMY_DATBASE_URI'] = 'sqlite:///data.db'
+app.config['SQLALCHEMY_DATBASE_URI'] = os.environ.get('DATABASE_URL','sqlite:///data.db') 
 app.secret_key = 'Jose'
 api = Api(app)
 
